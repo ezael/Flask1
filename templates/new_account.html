@@ -1,0 +1,19 @@
+{% extends "-base-.html" %}
+
+{% block title %}page new account{% endblock %}
+
+{% block content %}
+<div>Page new account</div>
+{% if ctx.user_exist == 1 %}
+    <div>Cet utilisateur existe deja !</div>
+{% endif %}
+<form method="post">
+    <input type="text" name="username" minlength=3 required="required">
+    <input type="email" name="email" minlength=10 required="required">
+    <select name="lang">
+        <option value="fr">FR</option>
+        <option value="en">EN</option>
+    </select>
+    <input type="submit" value="Login">
+</form>
+{% endblock %}

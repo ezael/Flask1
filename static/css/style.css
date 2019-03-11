@@ -1,0 +1,17 @@
+body {
+    background: #cccccc
+}
+
+#content {
+    position:relative;
+}
+
+#gui_top_left {
+    background: #888888;
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    width:120px;
+    height:70px;
+    padding:10px;
+}

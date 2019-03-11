@@ -1,0 +1,13 @@
+{% extends "-base-.html" %}
+
+{% block title %}page ga{% endblock %}
+
+{% block content %}
+<div>page ga</div>
+<div id="gui_top_left">
+    <div>u: {{ ctx.user.username }}</div>
+    <div>e: {{ ctx.user.email }}</div>
+    <div>l: {{ ctx.user.lang }}</div>
+    <div>i: {{ ctx.user.id }}</div>
+</div>
+{% endblock %}
