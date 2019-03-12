@@ -11,6 +11,17 @@ user = {
     "id": 0
 }
 
+testDict = {
+    "tt1": {
+        "ema1": "rrrrr",
+        "ema2": "ttttt"
+    },
+    "tt2": {
+        "ema1": "oooooo",
+        "ema2": "gdfgdgfd"
+    }
+}
+
 @app.route('/')
 def index():
     if "email" not in session:
@@ -66,7 +77,7 @@ def new_account():
 
     if request.method == "POST":
         form_username = request.form['username']
-        form_email = request.form['email']
+        form_email = request.form['email'
         form_lang = request.form['lang']
 
         if form_username != "" and form_email != "":
@@ -78,7 +89,7 @@ def new_account():
 
                     return redirect(url_for("game"))
             else:
-                context['user_exist'] = 1
+                context['user_exist'] = 2
 
     return render_template("new_account.html", ctx=context)
 
@@ -99,7 +110,9 @@ def game():
         return redirect(url_for("login"))
 
     context = {
-        "user": user
+        "user": user,
+        "testDict": testDict
     }
 
     return render_template("game.html", ctx=context)
+
