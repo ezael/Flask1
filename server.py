@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from lib import db
+from data import *
 
 app = Flask(__name__)
 app.secret_key = "7u`u3rKq'{AW`3P"
@@ -11,16 +12,6 @@ user = {
     "id": 0
 }
 
-testDict = {
-    "tt1": {
-        "ema1": "rrrrr",
-        "ema2": "ttttt"
-    },
-    "tt2": {
-        "ema1": "oooooo",
-        "ema2": "gdfgdgfd"
-    }
-}
 
 @app.route('/')
 def index():
@@ -45,9 +36,9 @@ def login():
             context['user_exist'] = 2
         else:
             x = db.user_get(form_username, form_email)
+
             user['lang'] = x[3]
             user['id'] = x[0]
-
             user['username'] = form_username
             user['email'] = form_email
 
@@ -65,6 +56,8 @@ def login():
 def logout():
     session.pop("username", None)
     session.pop("email", None)
+    session.pop("lang", None)
+    session.pop("id", None)
 
     return redirect(url_for("login"))
 
@@ -77,7 +70,7 @@ def new_account():
 
     if request.method == "POST":
         form_username = request.form['username']
-        form_email = request.form['email'
+        form_email = request.form['email']
         form_lang = request.form['lang']
 
         if form_username != "" and form_email != "":
@@ -86,6 +79,16 @@ def new_account():
             if not user_exist:
                 if form_username != "" and form_email != "":
                     result = db.user_save(form_username, form_email, form_lang)
+
+                    user['lang'] = form_lang
+                    user['id'] = result
+                    user['username'] = form_username
+                    user['email'] = form_email
+
+                    session['username'] = form_username
+                    session['email'] = form_email
+                    session['lang'] = user['lang']
+                    session['id'] = result
 
                     return redirect(url_for("game"))
             else:

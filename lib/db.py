@@ -26,7 +26,7 @@ def user_save(username, email, lang):
     c.execute("INSERT INTO users (username, email, lang) VALUES (?, ?, ?)", t)
     conn.commit()
 
-    return True
+    return c.lastrowid
 
 
 def user_get(username, email):
