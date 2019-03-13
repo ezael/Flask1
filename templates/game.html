@@ -1,14 +1,15 @@
 {% extends "-base-.html" %}
 
-{% block title %}page ga{% endblock %}
+{% block title %}{{ ctx.trad.titreGame }}{% endblock %}
 
 {% block content %}
-<div>page ga</div>
+<div>{{ ctx.trad.titreGame }}</div>
 <div id="gui_top_left">
     <div>u: {{ ctx.user.username }}</div>
     <div>e: {{ ctx.user.email }}</div>
     <div>l: {{ ctx.user.lang }}</div>
     <div>i: {{ ctx.user.id }}</div>
 </div>
+<div>{{ ctx.trad.titre }}</div>
 <div><a href="/logout">Logout</a></div>
 {% endblock %}

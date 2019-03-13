@@ -1,11 +1,11 @@
 {% extends "-base-.html" %}
 
-{% block title %}page new account{% endblock %}
+{% block title %}{{ ctx.trad.titreNewAcccount }}{% endblock %}
 
 {% block content %}
-<div>Page new account</div>
-{% if ctx.user_exist == 1 %}
-    <div>Cet utilisateur existe deja !</div>
+<div>{{ ctx.trad.titreNewAcccount }}</div>
+{% if ctx.user_exist == 2 %}
+    <div>{{ ctx.trad.utilisateurExist }}</div>
 {% endif %}
 <form method="post">
     <input type="text" name="username" minlength=3 required="required">
@@ -16,4 +16,5 @@
     </select>
     <input type="submit" value="Login">
 </form>
+<div><a href="login"/>{{ ctx.trad.seConnecter }}</div>
 {% endblock %}

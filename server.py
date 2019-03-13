@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from lib import db
 from data import *
+from trad import *
 
 app = Flask(__name__)
 app.secret_key = "7u`u3rKq'{AW`3P"
@@ -24,7 +25,8 @@ def index():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     context = {
-        "user_exist": 0
+        "user_exist": 0,
+        "trad": trad['fr']
     }
     if request.method == "POST":
         form_username = request.form['username']
@@ -65,7 +67,8 @@ def logout():
 @app.route("/new_account", methods=['GET', 'POST'])
 def new_account():
     context = {
-        "user_exist": 0
+        "user_exist": 0,
+        "trad": trad['fr']
     }
 
     if request.method == "POST":
@@ -77,20 +80,19 @@ def new_account():
             user_exist = db.user_exist(form_username, form_email)
 
             if not user_exist:
-                if form_username != "" and form_email != "":
-                    result = db.user_save(form_username, form_email, form_lang)
+                result = db.user_save(form_username, form_email, form_lang)
 
-                    user['lang'] = form_lang
-                    user['id'] = result
-                    user['username'] = form_username
-                    user['email'] = form_email
+                user['lang'] = form_lang
+                user['id'] = result
+                user['username'] = form_username
+                user['email'] = form_email
 
-                    session['username'] = form_username
-                    session['email'] = form_email
-                    session['lang'] = user['lang']
-                    session['id'] = result
+                session['username'] = form_username
+                session['email'] = form_email
+                session['lang'] = user['lang']
+                session['id'] = result
 
-                    return redirect(url_for("game"))
+                return redirect(url_for("game"))
             else:
                 context['user_exist'] = 2
 
@@ -106,15 +108,12 @@ def game():
     if "email" not in session:
         return redirect(url_for("login"))
 
-    if user['username'] != session['username']:
-        return redirect(url_for("login"))
-
-    if user['email'] != session['email']:
+    if user['username'] != session['username'] or user['email'] != session['email']:
         return redirect(url_for("login"))
 
     context = {
         "user": user,
-        "testDict": testDict
+        "trad": trad[user['lang']]
     }
 
     return render_template("game.html", ctx=context)

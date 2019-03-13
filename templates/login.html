@@ -1,11 +1,11 @@
 {% extends "-base-.html" %}
 
-{% block title %}page login{% endblock %}
+{% block title %}{{ ctx.trad.titreLogin }}{% endblock %}
 
 {% block content %}
-<div>Page login</div>
+<div>{{ ctx.trad.titreLogin }}</div>
 {% if ctx.user_exist == 2 %}
-    <div>cet utilisateur n'existe pas !</div>
+    <div>{{ ctx.trad.utilisateurNotExist }}</div>
 {% endif %}
 <div>
     <form method="post">
@@ -14,6 +14,6 @@
         <input type="submit" value="Login">
     </form>
 
-    <a href="/new_account">Créer un nouveau compte</a>
+    <a href="/new_account"><a href="/new_account">{{ ctx.trad.creerNouveauCompte }}</a>
 </div>
 {% endblock %}
