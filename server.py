@@ -113,8 +113,8 @@ def game():
 
     context = {
         "user": user,
-        "trad": trad[user['lang']]
+        "trad": trad[user['lang']],
+        "construction": construction[user['lang']]
     }
 
     return render_template("game.html", ctx=context)
-

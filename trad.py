@@ -11,7 +11,8 @@ trad = {
         "utilisateurExist": "Cet utilisateur existe déjà !",
 
         # page game
-        "titreGame": "titre game FR"
+        "titreGame": "titre game FR",
+        "logout": "Se déconnecter",
     },
     "en": {
         "titreNewAccount": "titre new account EN",
