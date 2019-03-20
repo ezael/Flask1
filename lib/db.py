@@ -23,10 +23,17 @@ def user_save(username, email, lang):
         email,
         lang,
     )
+
+    # insertion u nouveau compte en DB
     c.execute("INSERT INTO users (username, email, lang) VALUES (?, ?, ?)", t)
     conn.commit()
 
-    return c.lastrowid
+    newId = c.lastrowid
+
+    # creation d'un nouvelle station pour ce joueur
+    # on doit d'abord choisir la localisation
+
+    return newId
 
 
 def user_get(username, email):

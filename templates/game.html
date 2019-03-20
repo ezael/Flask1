@@ -14,7 +14,7 @@
 <div><a href="/logout">{{ ctx.trad.logout }}</a></div>
 <ul>
 {% for item in ctx.construction %}
-    <li style="color:red">{{ loop.index }} | {{ ctx.construction[item].nom }} | {{ ctx.construction[item].desc }}</li>
+    <li>{{ loop.index }} | {{ ctx.construction[item].nom }} | {{ ctx.construction[item].desc }}</li>
 {% endfor %}
 </ul>
 {% endblock %}
